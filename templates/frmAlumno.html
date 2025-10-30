@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>frmAlumno | Ingreso de Datos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        .data-input-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* Para Nombre y Carrera/No. Control */
+            gap: 20px;
+            padding: 20px 40px;
+        }
+        .data-input-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .data-input-row label {
+            width: 150px; /* Ancho fijo para las etiquetas */
+            text-align: right;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        .data-input-row input, .data-input-row select {
+            flex-grow: 1;
+            padding: 5px;
+            border: 1px solid #7F9DB9;
+        }
+        .next-button-container {
+            text-align: right;
+            padding: 20px 40px;
+        }
+        .section-title {
+            font-weight: bold;
+            text-decoration: underline;
+            margin: 20px 40px 10px;
+        }
+    </style>
+</head>
+<body class="menu-body">
+    <div class="menu-container">
+        <header class="menu-header" style="border-bottom: none;">
+            <div class="logo-left">
+<img src="{{ url_for('static', filename='img/logo1.png') }}" alt="Logo Tecnológico" class="logo-img">
+            </div>
+            <div class="header-text">
+                <h1>TECNOLÓGICO NACIONAL DE MÉXICO</h1>
+                <h2>INSTITUTO TECNOLÓGICO DE OCOTLÁN</h2>
+                <p>DEPARTAMENTO DE DESARROLLO ACADÉMICO</p>
+                <p class="test-title">TEST PERFIL PROFESIONAL</p>
+            </div>
+            <div class="logo-right">
+                <img src="{{ url_for('static', filename='img/logo2.png') }}" alt="Logo Ocotlán" class="logo-img">
+            </div>
+        </header>
+
+        <h3 class="section-title">DATOS DE LA PERSONA QUE REALIZARÁ EL TEST</h3>
+
+        <form method="POST" action="{{ url_for('procesar_frmAlumno') }}">
+            <div class="data-input-group">
+                <div>
+                    <div class="data-input-row">
+                        <label for="nombre">NOMBRE DEL ALUMNO</label>
+                        <input type="text" id="nombre" name="nombre" required>
+                    </div>
+                    <div class="data-input-row">
+                        <label for="carrera">CARRERA</label>
+                        <select id="carrera" name="carrera" required>
+                            <option value="">-- Seleccionar Carrera --</option>
+                            <option value="ISC">Ing. en Sistemas Computacionales</option>
+                            <option value="IIA">Ing. Industrial</option>
+                            <option value="IEL">Ing. Eléctrica</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="data-input-row">
+                        <label for="control" style="width: 100px;">No CONTROL</label>
+                        <input type="text" id="control" name="matricula" required>
+                    </div>
+                    <div class="data-input-row"></div>
+                </div>
+            </div>
+
+            <div class="next-button-container">
+                <button type="submit" class="menu-button" style="width: 150px; padding: 10px;">
+                    SIGUIENTE
+                </button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

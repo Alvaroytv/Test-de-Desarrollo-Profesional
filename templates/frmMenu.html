@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>TEST DE PERFIL PROFESIONAL</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="menu-body">
+    <div class="menu-container">
+        <header class="menu-header">
+            <div class="logo-left">
+<img src="{{ url_for('static', filename='img/logo1.png') }}" alt="Logo Tecnológico" class="logo-img">
+            </div>
+            <div class="header-text">
+                <h1>TECNOLÓGICO NACIONAL DE MÉXICO</h1>
+                <h2>INSTITUTO TECNOLÓGICO DE OCOTLÁN</h2>
+                <p>DEPARTAMENTO DE DESARROLLO ACADÉMICO</p>
+                <p class="test-title">TEST PERFIL PROFESIONAL</p>
+            </div>
+            <div class="logo-right">
+<img src="{{ url_for('static', filename='img/logo2.png') }}" alt="Logo Ocotlán" class="logo-img">
+            </div>
+        </header>
+
+        <div class="menu-sections">
+            <fieldset class="menu-group">
+                <legend>MANTENIMIENTO</legend>
+                <a href="#" class="menu-button-link">
+                    <button class="menu-button">
+                        <span class="icon">🗑️</span> LIMPIAR
+                    </button>
+                </a>
+            </fieldset>
+
+            <fieldset class="menu-group">
+                <legend>TEST</legend>
+                <a href="{{ url_for('frmAlumno') }}" class="menu-button-link">
+                    <button class="menu-button">
+                        <span class="icon">📋</span> PRUEBA
+                    </button>
+                </a>
+                <a href="{{ url_for('frmBuscar') }}" class="menu-button-link">
+                    <button class="menu-button">
+                        <span class="icon">📑</span> RESULTADOS
+                    </button>
+                </a>
+            </fieldset>
+
+            <fieldset class="menu-group">
+                <legend>IMPRESIÓN</legend>
+                <a href="{{ url_for('frmBuscar') }}" class="menu-button-link">
+                    <button class="menu-button">
+                        <span class="icon">🖨️</span> RESULTADOS
+                    </button>
+                </a>
+                <a href="#" class="menu-button-link disabled">
+                    <button class="menu-button">
+                        <span class="icon">📄</span> OFICIO
+                    </button>
+                </a>
+            </fieldset>
+
+            <fieldset class="menu-group">
+    <legend>ARCHIVO</legend>
+    <a href="#" class="menu-button-link disabled">
+        <button class="menu-button">
+            <span class="icon">💾</span> GUARDAR
+        </button>
+    </a>
+    <a href="{{ url_for('frmBuscar') }}" class="menu-button-link">
+        <button class="menu-button">
+            <span class="icon">🔍</span> BUSCAR
+        </button>
+    </a>
+</fieldset>
+        </div>
+        
+        <div class="exit-section">
+            <a href="#" class="menu-button-link exit-link">
+                <button class="menu-button exit-button">
+                    <span class="icon">🛑</span> SALIR
+                </button>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

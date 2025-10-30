@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Instrucciones</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        .instructions-content {
+            padding: 20px 40px;
+            text-align: justify;
+        }
+        .instructions-content h3 {
+            font-weight: bold;
+            text-decoration: underline;
+            margin-bottom: 20px;
+        }
+        .instructions-content p {
+            margin-bottom: 15px;
+            line-height: 1.5;
+            font-size: 1.1em;
+        }
+        .next-button-container {
+            text-align: right;
+            padding: 20px 40px;
+        }
+    </style>
+</head>
+<body class="menu-body">
+    <div class="menu-container">
+        <header class="menu-header" style="border-bottom: none;">
+            <div class="logo-left">
+                <img src="{{ url_for('static', filename='img/logo1.png') }}" alt="Logo Tecnológico" class="logo-img">
+            </div>
+            <div class="header-text">
+                <h1>TECNOLÓGICO NACIONAL DE MÉXICO</h1>
+                <h2>INSTITUTO TECNOLÓGICO DE OCOTLÁN</h2>
+                <p>DEPARTAMENTO DE DESARROLLO ACADÉMICO</p>
+                <p class="test-title">TEST PERFIL PROFESIONAL</p>
+            </div>
+            <div class="logo-right">
+                <img src="{{ url_for('static', filename='img/logo2.png') }}" alt="Logo Ocotlán" class="logo-img">
+            </div>
+        </header>
+
+        <div class="instructions-content">
+            <h3>INSTRUCCIONES</h3>
+            
+            <p>
+                A continuación vas a encontrar una serie de actividades (trabajos o estudios). Indica tu interés por cada una 
+                de las siguientes tareas. Debes leerlas detenidamente y seleccionar la <strong>primera columna</strong> si la actividad resulta 
+                de tu <strong>interés</strong>. Seleccionar la <strong>segunda columna</strong> si lo desconoces o te resulta <strong>indiferente</strong>. Marcar la <strong>tercer 
+                columna</strong> si te <strong>desagrada</strong> dicha actividad.
+            </p>
+
+            <p style="font-weight: bold; color: #CC0000;">
+                Deberás seleccionar obligadamente una respuesta, la no selección en alguna de las preguntas modificará el 
+                resultado del TEST.
+            </p>
+        </div>
+
+        <div class="next-button-container">
+<a href="{{ url_for('frmUno', matricula_id=matricula) }}" style="text-decoration: none;">
+    <button class="menu-button" style="width: 150px; padding: 10px;">
+        SIGUIENTE
+    </button>
+</a>
+        </div>
+    </div>
+</body>
+</html>

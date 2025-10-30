@@ -1,0 +1,136 @@
+/* static/css/style.css */
+
+/* Estilo para el cuerpo y el patrón de puntos (simulando el diseño de fondo de VBA) */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #F0F0F0; /* Fondo gris claro */
+    margin: 0;
+    padding: 20px;
+    /* Patrón de puntos para simular el UserForm */
+    background-image: radial-gradient(#ccc 1px, transparent 1px);
+    background-size: 10px 10px;
+}
+
+.menu-container {
+    width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #FFFFFF; /* Fondo blanco para el contenido principal */
+    border: 1px solid #7F9DB9; /* Borde típico de ventanas */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Encabezado */
+.menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px dotted #ccc;
+}
+
+.header-text h1, .header-text h2 {
+    margin: 5px 0;
+    color: #00008B; /* Azul oscuro */
+}
+.test-title {
+    font-weight: bold;
+    text-decoration: underline;
+    margin-top: 10px;
+}
+/* static/css/style.css (Añadir estas reglas o modificar las existentes) */
+
+/* Contenedores del Logo */
+.logo-left, .logo-right {
+    /* 80px era el tamaño que propusimos para el contenedor */
+    width: 80px; 
+    height: 80px;
+    display: flex; /* Usamos flexbox aquí también */
+    justify-content: center; /* Centra la imagen horizontalmente */
+    align-items: center; /* Centra la imagen verticalmente */
+}
+
+/* La Imagen en Sí */
+.logo-img {
+    max-width: 100%; /* Asegura que la imagen no se desborde */
+    max-height: 100%; /* Limita la altura de la imagen al contenedor */
+    height: auto;
+    width: auto;
+    display: block;
+}
+
+/* Secciones de Botones (Fieldsets) */
+.menu-sections {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+}
+
+.menu-group {
+    border: 1px dotted #ccc; /* El borde punteado que se ve en la imagen */
+    padding: 15px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 200px; /* Para mantener la uniformidad */
+}
+
+.menu-group legend {
+    font-weight: bold;
+    padding: 0 10px;
+}
+
+/* Estilo de Botones */
+.menu-button-link {
+    text-decoration: none;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.menu-button {
+    width: 100%;
+    padding: 15px 10px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: #C0C0C0; /* Gris típico de botones */
+    border: 1px solid #000;
+    box-shadow: 1px 1px 0 #fff inset, -1px -1px 0 #000 inset;
+    transition: background-color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu-button:hover {
+    background-color: #D0D0D0;
+}
+
+.menu-button:active {
+    background-color: #A0A0A0;
+    box-shadow: none;
+}
+
+.icon {
+    margin-right: 8px;
+    font-size: 1.2em;
+}
+
+/* Botón SALIR */
+.exit-section {
+    width: 150px; /* Ajusta el ancho para centrarlo como en el VBA */
+    margin: 30px auto 0;
+}
+.exit-button {
+    background-color: #e44d4d;
+    color: white;
+}
+.exit-button:hover {
+    background-color: #cc3939;
+}
+.exit-button:active {
+    background-color: #b32e2e;
+}

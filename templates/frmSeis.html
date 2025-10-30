@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Sección 6 del Test</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        /* AJUSTES DE ESTILO IDÉNTICOS A FRM CUATRO/CINCO */
+        .test-content-area {
+            padding: 20px 40px;
+        }
+
+        /* 1. Contenedor de Encabezados */
+        .option-headers {
+            display: flex;
+            font-weight: bold;
+            text-align: center;
+            margin-left: auto; 
+            
+            /* Ancho fijo y margen para alineación */
+            width: 250px; 
+            margin-right: 40px; 
+
+            border-bottom: 2px solid #000;
+            margin-bottom: 5px;
+            padding-bottom: 5px;
+        }
+        
+        /* 2. Fila de Encabezados (Para aplicar los anchos compensatorios) */
+        .option-header-row {
+            width: 100%;
+            display: flex;
+            justify-content: space-between; 
+            align-items: center;
+            padding: 0 5px; /* Padding para separar del borde */
+        }
+        
+        /* 3. Celdas de Encabezados */
+        .option-headers div {
+            /* Usamos flex: 1 en el HTML, pero estos anchos fijos aseguran la distribución */
+            flex: 1; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+            padding: 0 5px;
+            font-size: 0.85em;
+            line-height: 1.1;
+        }
+        
+        /* 1. Contenedor de Cada Pregunta (Alineación Horizontal) */
+        .question-row-container {
+            display: flex;
+            align-items: center; 
+            padding: 8px 0;
+            border-bottom: 1px dotted #ccc;
+        }
+        .question-row-container:last-child {
+            border-bottom: none;
+        }
+
+        /* 2. Texto de la Pregunta (Ocupa la mayoría del espacio) */
+        .question-text {
+            flex: 1; 
+            font-size: 0.95em;
+            padding-right: 20px;
+            margin: 0;
+            line-height: 1.4;
+        }
+        
+        /* 3. El Contenedor de Opciones (La Caja Punteada) */
+        .option-box-container {
+            width: 250px; 
+            margin-left: auto; 
+            border: 1px dotted #ccc;
+            padding: 5px;
+            display: flex;
+            align-items: center; 
+        }
+        /* El option-group-row controlará la distribución de los radios dentro de la caja */
+        .option-group-row {
+            flex: 1; 
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        /* Botones de Navegación (ATRAS / SIGUIENTE) */
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between; 
+            width: 250px; 
+            margin-left: auto; 
+            margin-right: 40px; 
+            padding-top: 20px;
+        }
+        .navigation-buttons a, .navigation-buttons button {
+            margin-left: 0; 
+            width: 120px;
+        }
+    </style>
+</head>
+<body class="menu-body">
+    <div class="menu-container">
+        <header class="menu-header" style="border-bottom: none;">
+            <div class="logo-left">
+                <img src="{{ url_for('static', filename='img/logo1.png') }}" alt="Logo Tecnológico" class="logo-img">
+            </div>
+            <div class="header-text">
+                <h1>TECNOLÓGICO NACIONAL DE MÉXICO</h1>
+                <h2>INSTITUTO TECNOLÓGICO DE OCOTLÁN</h2>
+                <p>DEPARTAMENTO DE DESARROLLO ACADÉMICO</p>
+                <p class="test-title">TEST PERFIL PROFESIONAL</p>
+            </div>
+            <div class="logo-right">
+                <img src="{{ url_for('static', filename='img/logo2.png') }}" alt="Logo Ocotlán" class="logo-img">
+            </div>
+        </header>
+
+        <form method="POST" action="{{ url_for('procesar_frmSeis') }}">
+            <input type="hidden" name="matricula_id" value="{{ matricula }}">
+            
+            <div class="test-content-area">
+                
+                <div class="option-headers">
+                    <div class="option-header-row">
+                        <div style="width: 25%;">ME<br>GUSTA</div>
+                        <div style="width: 40%;">ME ES<br>INDIFERENTE</div>
+                        <div style="width: 25%;">ME<br>DESAGRADA</div>
+                    </div>
+                </div>
+                
+                {% for pregunta in preguntas %}
+                    {% set i = loop.index + 50 %} <div class="question-row-container">
+                        
+                        <div class="question-text">{{ i }}. {{ pregunta }}</div>
+                        
+                        <div class="option-box-container">
+                            
+                            <div class="option-group-row">
+                                {% set q_name = 'q' + i|string %}
+
+                                <input type="radio" name="{{ q_name }}" value="1" required>
+                                <input type="radio" name="{{ q_name }}" value="0" required>
+                                <input type="radio" name="{{ q_name }}" value="-1" required>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <div class="navigation-buttons">
+                <a href="{{ url_for('frmCinco', matricula_id=matricula) }}" style="text-decoration: none;">
+                    <button type="button" class="menu-button">
+                        ATRAS
+                    </button>
+                </a>
+                
+                <button type="submit" class="menu-button" style="background-color: #e44d4d; color: white;">
+                    FINALIZAR
+                </button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

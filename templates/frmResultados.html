@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Resultados del Test</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        /* Estilos específicos para frmResultados */
+        .result-container {
+            width: 90%; /* Ajusta el ancho según sea necesario */
+            max-width: 1000px; /* Ancho máximo para pantallas grandes */
+            margin: 20px auto;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            padding: 30px;
+        }
+
+        .result-header-info {
+            display: flex;
+            flex-wrap: wrap; /* Permite que los elementos salten de línea */
+            justify-content: space-between;
+            margin-bottom: 20px;
+            border-bottom: 1px dotted #ccc;
+            padding-bottom: 15px;
+        }
+        .result-header-info div {
+            flex-basis: 48%; /* Ocupa casi la mitad del ancho */
+            margin-bottom: 10px;
+        }
+        .result-header-info label {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .result-header-info input[type="text"] {
+            border: none;
+            border-bottom: 1px dotted #000;
+            padding: 2px 5px;
+            width: 70%;
+            background-color: transparent;
+            font-size: 1em;
+        }
+
+        .results-section-title {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            margin: 20px -30px 20px -30px; /* Margen negativo para extenderse */
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .campo-result-row {
+            display: flex;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px dotted #eee;
+        }
+        .campo-result-row:last-of-type {
+            border-bottom: none;
+        }
+        .campo-result-row .campo-name {
+            flex-basis: 20%; /* Ancho para el nombre del campo */
+            font-weight: bold;
+            padding-right: 15px;
+            text-align: right;
+        }
+        .campo-result-row .campo-value {
+            flex-basis: 15%; /* Ancho para la clasificación (ALTA/MEDIA/BAJA) */
+            padding-right: 15px;
+            font-weight: bold;
+        }
+        .campo-result-row .campo-description {
+            flex-basis: 65%; /* Ancho para la descripción */
+            font-size: 0.9em;
+            line-height: 1.4;
+        }
+
+        .results-buttons {
+            display: flex;
+            justify-content: flex-end; /* Alinear a la derecha */
+            gap: 15px; /* Espacio entre los botones */
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px dotted #ccc;
+        }
+        .results-buttons button {
+            width: 120px;
+            padding: 10px 15px;
+            font-size: 1em;
+            cursor: pointer;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f0f0f0;
+            color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+        .results-buttons button:hover {
+            background-color: #e0e0e0;
+        }
+        .results-buttons img {
+            height: 20px;
+            width: 20px;
+        }
+
+        /* Estilos específicos para los botones que usan imágenes como icono */
+        #btnImprimir img, #btnGuardar img, #btnSalir img {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body class="menu-body">
+    <div class="menu-container">
+        <header class="menu-header" style="border-bottom: none;">
+            <div class="logo-left">
+                <img src="{{ url_for('static', filename='img/logo1.png') }}" alt="Logo Tecnológico" class="logo-img">
+            </div>
+            <div class="header-text">
+                <h1>TECNOLÓGICO NACIONAL DE MÉXICO</h1>
+                <h2>INSTITUTO TECNOLÓGICO DE OCOTLÁN</h2>
+                <p>DEPARTAMENTO DE DESARROLLO ACADÉMICO</p>
+                <p class="test-title">TEST PERFIL PROFESIONAL</p>
+            </div>
+            <div class="logo-right">
+                <img src="{{ url_for('static', filename='img/logo2.png') }}" alt="Logo Ocotlán" class="logo-img">
+            </div>
+        </header>
+
+        <div class="result-container">
+            <div class="result-header-info">
+                <div>
+                    <label for="nombre">NOMBRE DEL ALUMNO</label>
+                    <input type="text" id="nombre" value="{{ nombre_alumno }}" readonly>
+                </div>
+                <div>
+                    <label for="control">No CONTROL</label>
+                    <input type="text" id="control" value="{{ matricula }}" readonly>
+                </div>
+                <div style="flex-basis: 100%;">
+                    <label for="carrera">CARRERA</label>
+                    <input type="text" id="carrera" value="{{ carrera_alumno }}" readonly>
+                </div>
+            </div>
+
+            <div class="results-section-title">
+                RESULTADOS
+            </div>
+
+            {% for campo_num in range(1, 11) %}
+                {% set campo_key = 'CAMPO' + campo_num|string %}
+                <div class="campo-result-row">
+                    <div class="campo-name">{{ campo_key.replace('CAMPO','') }}. {{ campo_key.replace('CAMPO','') | get_campo_nombre }}</div>
+                    <div class="campo-value">{{ resultados[campo_key]['clasificacion'] }}</div>
+                    <div class="campo-description">{{ resultados[campo_key]['descripcion'] }}</div>
+                </div>
+            {% endfor %}
+
+            <div class="results-buttons">
+                <button id="btnImprimir">
+                    <img src="{{ url_for('static', filename='img/print_icon.png') }}" alt="Imprimir"> IMPRIMIR
+                </button>
+                <button id="btnGuardar">
+                    <img src="{{ url_for('static', filename='img/save_icon.png') }}" alt="Guardar"> GUARDAR
+                </button>
+<button id="btnSalir" onclick="window.location.href = '{{ url_for('frmMenu') }}'">
+    <img src="{{ url_for('static', filename='img/exit_icon.png') }}" alt="Salir"> SALIR
+</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Función para imprimir la página (excluyendo los botones de navegación si es posible)
+        document.getElementById('btnImprimir').addEventListener('click', function() {
+            window.print();
+        });
+
+        // El botón GUARDAR ya está implícito en el flujo si ya guardamos en procesar_frmSeis.
+        // Si hay una funcionalidad de "guardar cambios" en esta pantalla, se necesitaría una ruta POST adicional.
+        document.getElementById('btnGuardar').addEventListener('click', function() {
+            alert('Los resultados ya se han guardado automáticamente al finalizar el test.');
+            // Si necesitas forzar un re-guardado (ej. si el usuario edita algo),
+            // necesitarías una nueva ruta POST para procesar esos cambios.
+        });
+    </script>
+</body>
+</html>

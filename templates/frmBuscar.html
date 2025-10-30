@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Búsqueda</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        .search-group {
+            display: flex;
+            align-items: center;
+            margin: 50px auto 30px;
+            width: 70%;
+            max-width: 600px;
+        }
+        .search-group label {
+            width: 150px;
+            font-weight: bold;
+            text-align: right;
+            margin-right: 15px;
+        }
+        .search-group select {
+            flex-grow: 1;
+            padding: 5px;
+            border: 1px solid #7F9DB9;
+            margin-right: 20px;
+        }
+        .search-button-container {
+            text-align: right;
+            width: 150px; /* Ancho del botón */
+        }
+        .section-title-buscar {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin: 30px 0 20px 40px; /* Alineación del título "BUSCAR ALUMNO" */
+        }
+    </style>
+</head>
+<body class="menu-body">
+    <div class="menu-container">
+        <header class="menu-header" style="border-bottom: none;">
+            <div class="logo-left">
+                <img src="{{ url_for('static', filename='img/logo1.png') }}" alt="Logo Tecnológico" class="logo-img">
+            </div>
+            <div class="header-text">
+                <h1>TECNOLÓGICO NACIONAL DE MÉXICO</h1>
+                <h2>INSTITUTO TECNOLÓGICO DE OCOTLÁN</h2>
+                <p>DEPARTAMENTO DE DESARROLLO ACADÉMICO</p>
+                <p class="test-title">TEST PERFIL PROFESIONAL</p>
+            </div>
+            <div class="logo-right">
+                <img src="{{ url_for('static', filename='img/logo2.png') }}" alt="Logo Ocotlán" class="logo-img">
+            </div>
+        </header>
+
+        <h3 class="section-title-buscar">BUSCAR ALUMNO</h3>
+        
+        <form method="POST" action="{{ url_for('frmBuscar') }}">
+            <div class="search-group">
+                <label for="nombre_alumno">Nombre del Alumno</label>
+                
+                <select id="nombre_alumno" name="nombre_alumno" required>
+                    <option value="">-- Seleccione un Alumno --</option>
+                    {% for nombre in nombres %}
+                        <option value="{{ nombre }}">{{ nombre }}</option>
+                    {% endfor %}
+                </select>
+
+                <div class="search-button-container">
+                    <button type="submit" class="menu-button" style="width: 100%; height: 50px;">
+                        <span class="icon">💾</span> BUSCAR
+                    </button>
+                </div>
+            </div>
+            
+            {% if error %}
+                <p style="color: red; text-align: center;">{{ error }}</p>
+            {% endif %}
+        </form>
+    </div>
+</body>
+</html>
